@@ -1,0 +1,22 @@
+body {
+    width: 100%;
+}
+
+.frame {
+    border: 1px solid black;
+    width: 65%;
+    display: inline-block;
+}
+
+.control {
+    position: relative;
+    margin-top: 0;
+    height: 100%;
+    width: 30%;
+    display:inline-block;
+    vertical-align: top;
+}
+
+button {
+    margin-right: 4%;
+}

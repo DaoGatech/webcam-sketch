@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html{% block html_attribs %}{% endblock html_attribs %}>
+  <head>
+    <title>{% block title %}{{title|default}}{% endblock title %}</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type=text/javascript>
+        $(function() {
+            $('#sketch').bind('click', function() {
+                $.ajax({
+                    type: "POST",
+                    url: '/webcam',
+                    contentType: "application/json",
+                    data: '{"mode": "sharpen"}',
+                    success: function(data) {
+                        console.log(data)
+                    }
+                });
+             });
+        });
+    </script>
+    <!-- Bootstrap -->
+    <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}">
+  </head>
+  <body{% block body_attribs %}{% endblock body_attribs %}>
+    <h1>Webcam-Sketch</h1>
+    <div class="content">
+        <div class="frame">
+            <img src="{{ url_for('webcam') }}">
+        </div>
+        <div class="control">
+            <div class="text-center">
+                <button id="sketch" type="button" class="btn btn-primary btn-lg">Sketch Mode</button>
+                <button id="normal" type="button" class="btn btn-secondary btn-lg">Normal Mode</button>
+            </div>
+        </div>
+    </div>
+  </body>
+    <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+    <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+
+  </body>
+</html>
