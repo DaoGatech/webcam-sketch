@@ -5,7 +5,6 @@ import numpy as np
 kernel_sharpening = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])
 
 def sketch(image):
-
     img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     img_gray_blur = cv2.GaussianBlur(img_gray, (5,5), 0)
     canny_edges = cv2.Canny(img_gray_blur, 10, 70)

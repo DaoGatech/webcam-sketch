@@ -8,7 +8,7 @@ app = Flask(__name__)
 Bootstrap(app)
 api = Api(app)
 webcamFunc = None
-
+t_end = None
 
 @app.route('/')
 def index():
@@ -17,14 +17,16 @@ def index():
 
 def sketchWebcam():
     global webcamFunc
+    global t_end
     vc = cv2.VideoCapture(0)
     t_end = time.time() + 5
     """Video streaming generator function."""
     while time.time() < t_end:
         rval, frame = vc.read()
-        cv2.imwrite('t.jpg', webcamFunc(frame))
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + open('t.jpg', 'rb').read() + b'\r\n')
+        if rval:
+            cv2.imwrite('t.jpg', webcamFunc(frame))
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + open('t.jpg', 'rb').read() + b'\r\n')
 
 
 @app.route('/webcam', methods=["GET", "POST"])
