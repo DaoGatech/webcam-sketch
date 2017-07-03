@@ -7,14 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type=text/javascript>
         $(function() {
-            $('#sketch').bind('click', function() {
+            $('#sharpen').bind('click', function() {
                 $.ajax({
                     type: "POST",
                     url: '/webcam',
                     contentType: "application/json",
                     data: '{"mode": "sharpen"}',
                     success: function(data) {
-                        console.log("here")
+                        window.location.reload();
+                    }
+                });
+             });
+            $('#sketch').bind('click', function() {
+                $.ajax({
+                    type: "POST",
+                    url: '/webcam',
+                    contentType: "application/json",
+                    data: '{"mode": "sketch"}',
+                    success: function(data) {
                         window.location.reload();
                     }
                 });
@@ -33,8 +43,8 @@
         </div>
         <div class="control">
             <div class="text-center">
-                <button id="sketch" type="button" class="btn btn-primary btn-lg">Sketch Mode</button>
-                <button id="normal" type="button" class="btn btn-secondary btn-lg">Normal Mode</button>
+                <button id="sketch" type="button" class="btn btn-primary btn-lg">Sketch</button>
+                <button id="sharpen" type="button" class="btn btn-secondary btn-lg">Sharpen</button>
             </div>
         </div>
     </div>

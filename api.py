@@ -1,6 +1,6 @@
 from flask import Flask, render_template, Response, request, jsonify, json
 from flask_restful import Resource, Api
-from sketch import sketch, sharpen
+from sketch import *
 from flask_bootstrap import Bootstrap
 import cv2
 import time
@@ -50,7 +50,7 @@ def webcam():
             'sharpen': sharpen
         }
         webcamFunc = webcamModeMap[webcamMode['mode']]
-              
+        print(webcamFunc)
         return Response(sketchWebcam(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
