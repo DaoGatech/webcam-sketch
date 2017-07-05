@@ -40,6 +40,28 @@
                     }
                 });
             });
+            $('#rotate').bind('click', function() {
+                $.ajax({
+                    type: "POST",
+                    url: '/webcam',
+                    contentType: "application/json",
+                    data: '{"mode": "rotate"}',
+                    success: function(data) {
+                        window.location.reload();
+                    }
+                });
+            });
+            $('#crop').bind('click', function() {
+                $.ajax({
+                    type: "POST",
+                    url: '/webcam',
+                    contentType: "application/json",
+                    data: '{"mode": "crop"}',
+                    success: function(data) {
+                        window.location.reload();
+                    }
+                });
+            });
         });
     </script>
     <!-- Bootstrap -->
@@ -55,8 +77,10 @@
         <div class="control">
             <div class="text-center">
                 <button id="sketch" type="button" class="btn btn-primary btn-lg">Sketch</button>
-                <button id="sharpen" type="button" class="btn btn-secondary btn-lg">Sharpen</button>
-                <button id="blur" type="button" class="btn btn-secondary btn-lg">Blur</button>
+                <button id="sharpen" type="button" class="btn btn-primary btn-lg">Sharpen</button>
+                <button id="blur" type="button" class="btn btn-primary btn-lg">Blur</button>
+                <button id="rotate" type="button" class="btn btn-primary btn-lg">Rotate</button>
+                <button id="crop" type="button" class="btn btn-primary btn-lg">Crop</button>
             </div>
         </div>
     </div>

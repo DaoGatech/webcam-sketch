@@ -7,6 +7,9 @@ kernel_sharpening = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])
 #blur kernel
 blur_kernel = np.ones((7,7), np.float32) / 49
 
+#Current Angel of the webcam
+curAngel = 0
+
 def sketch(image):
     img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     img_gray_blur = cv2.GaussianBlur(img_gray, (5,5), 0)
@@ -19,3 +22,16 @@ def sharpen(image):
 
 def blur(image):
     return cv2.filter2D(image, -1, blur_kernel)
+
+def rotate(image):
+    global curAngel
+    curAngel = (curAngel + 90) % 360
+    height, width = image.shape[:2]
+    rotation_matrix = cv2.getRotationMatrix2D((width/2, height/2), curAngel, 1)
+    return cv2.warpAffine(image, rotation_matrix, (width, height))
+
+def crop(image):
+    height, width = image.shape[:2]
+    start_row, start_col = int(height * .15), int(width * .15)
+    end_row, end_col = int(height * .75), int(width / 2)
+    return image[start_row:end_row][start_col:end_col]

@@ -48,7 +48,9 @@ def webcam():
         webcamModeMap = {
             'sketch': sketch,
             'sharpen': sharpen,
-            'blur': blur
+            'blur': blur,
+            'rotate': rotate,
+            'crop': crop
         }
         webcamFunc = webcamModeMap[webcamMode['mode']]
         return Response(sketchWebcam(),
