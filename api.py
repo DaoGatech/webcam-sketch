@@ -47,10 +47,10 @@ def webcam():
         webcamMode = json.loads(request.data)
         webcamModeMap = {
             'sketch': sketch,
-            'sharpen': sharpen
+            'sharpen': sharpen,
+            'blur': blur
         }
         webcamFunc = webcamModeMap[webcamMode['mode']]
-        print(webcamFunc)
         return Response(sketchWebcam(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 

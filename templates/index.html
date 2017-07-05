@@ -28,7 +28,18 @@
                         window.location.reload();
                     }
                 });
-             });
+            });
+            $('#blur').bind('click', function() {
+                $.ajax({
+                    type: "POST",
+                    url: '/webcam',
+                    contentType: "application/json",
+                    data: '{"mode": "blur"}',
+                    success: function(data) {
+                        window.location.reload();
+                    }
+                });
+            });
         });
     </script>
     <!-- Bootstrap -->
@@ -45,6 +56,7 @@
             <div class="text-center">
                 <button id="sketch" type="button" class="btn btn-primary btn-lg">Sketch</button>
                 <button id="sharpen" type="button" class="btn btn-secondary btn-lg">Sharpen</button>
+                <button id="blur" type="button" class="btn btn-secondary btn-lg">Blur</button>
             </div>
         </div>
     </div>
