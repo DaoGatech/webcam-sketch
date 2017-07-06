@@ -10,6 +10,9 @@ blur_kernel = np.ones((7,7), np.float32) / 49
 #Current Angel of the webcam
 curAngel = 0
 
+#opening_kernel
+opening_kernel = np.ones((5,5), np.uint8)
+
 def sketch(image):
     img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     img_gray_blur = cv2.GaussianBlur(img_gray, (5,5), 0)
@@ -35,3 +38,7 @@ def crop(image):
     start_row, start_col = int(height * .15), int(width * .15)
     end_row, end_col = int(height * .75), int(width / 2)
     return image[start_row:end_row][start_col:end_col]
+
+def removeNoise(image):
+    opening = cv2.morphologyEx(image, cv2.MORPH_OPEN, opening_kernel)
+    return opening
