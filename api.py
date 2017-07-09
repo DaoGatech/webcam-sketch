@@ -1,5 +1,5 @@
 from flask import Flask, render_template, Response, request, jsonify, json
-from flask_restful import Resource, Api
+from flask_restful import Api
 from sketch import *
 from flask_bootstrap import Bootstrap
 import cv2
